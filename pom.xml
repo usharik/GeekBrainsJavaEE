@@ -7,6 +7,7 @@
     <groupId>ru.geekbrains.java.ee</groupId>
     <artifactId>GeekBrainsJavaEE</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
 
     <name>lesson2 Maven Webapp</name>
 
