@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lesson1-basic</artifactId>
+    <artifactId>lesson2-filter</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
@@ -14,10 +14,17 @@
         <version>1.0.0</version>
     </parent>
 
-    <name>lesson1 JavaEE basics</name>
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
-        <finalName>lesson1</finalName>
+        <finalName>lesson2filter</finalName>
 
         <plugins>
             <plugin>
@@ -25,5 +32,6 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 </project>

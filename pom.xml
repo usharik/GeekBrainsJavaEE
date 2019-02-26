@@ -20,6 +20,8 @@
     <modules>
         <module>lesson1-basic</module>
         <module>lesson2-servlet</module>
+        <module>lesson2-filter</module>
+        <module>lesson3-jsp</module>
     </modules>
 
     <dependencies>
