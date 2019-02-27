@@ -64,15 +64,11 @@ public class ProductsBean {
         logger.info("Edit product with id {} and name {}", product.getId(), product.getName());
 
         this.product = product;
-        return toListPageAction();
+        return "/product.xhtml?faces-redirect=true";
     }
 
     public String saveProduct() {
         productRepository.merge(product);
-        return toListPageAction();
-    }
-
-    public String toListPageAction() {
         return "/index.xhtml?faces-redirect=true";
     }
 }
