@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+    <title>Product List</title>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <style type="text/css">
+        .btn_margin {
+            margin-right: 5px;
+        }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</h:head>
+
+<h:body>
+
+    <h:form class="col-12">
+
+        <div class="form-group">
+            <h2>Product list</h2>
+        </div>
+
+        <h:dataTable value="#{products.productList}" var="product" class="table table-striped">
+
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{product.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{product.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{product.price}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <h:commandButton value="Edit" action="#{products.editAction(product)}"
+                                 class="btn btn-success btn_margin"/>
+                <h:commandButton value="Delete" action="#{products.deleteAction(product)}"
+                                 class="btn btn-danger btn_margin"/>
+            </h:column>
+
+        </h:dataTable>
+
+        <div class="form-group">
+            <h:commandButton value="New" action="#{products.addAction}" class="btn btn-success"/>
+        </div>
+
+    </h:form>
+
+</h:body>
+
+</html>
