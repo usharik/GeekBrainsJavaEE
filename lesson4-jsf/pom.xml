@@ -21,6 +21,15 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- Этот репозиторий нужен для того, чтобы использовать схемы Primefaces -->
+    <repositories>
+        <repository>
+            <id>primefaces</id>
+            <name>Primefaces maven repo</name>
+            <url>http://repository.primefaces.org/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -56,10 +65,18 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Две зависимости ниже нужны только если вы хотите использовать Primefaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>6.0</version>
+        </dependency>
+
+        <!-- Тема Bootstrap для Primefaces -->
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>1.0.10</version>
         </dependency>
     </dependencies>
 

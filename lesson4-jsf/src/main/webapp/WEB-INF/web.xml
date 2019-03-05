@@ -23,4 +23,11 @@
     <servlet-name>faces-servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
+  <!-- Устанавливаем тему на основе Bootstrap для Primefaces -->
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>bootstrap</param-value>
+  </context-param>
+
 </web-app>
