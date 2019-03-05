@@ -2,7 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <name>lesson1 JavaEE basics</name>
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -10,6 +10,8 @@
         <artifactId>GeekBrainsJavaEE</artifactId>
         <version>1.0.0</version>
     </parent>
+
+    <name>Lesson3 JSP and JSTL</name>
 
     <artifactId>lesson3-jsp</artifactId>
     <version>1.0.0</version>

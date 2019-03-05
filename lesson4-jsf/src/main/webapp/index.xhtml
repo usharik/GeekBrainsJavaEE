@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+    <title>Product List</title>
+</h:head>
+
+<h:body>
+
+    <!-- Форма нужна во всех случаях когда мы хотим использовать комманды по нажатию кнопки -->
+    <!-- commandButton и commandLink будут работать только внутри формы-->
+    <h:form id="productForm">
+        <h:dataTable value="#{products.productList}" var="product">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{product.id}
+                <!-- Обратите внимание, что такое обращение к полям
+                возможно только при наличии геттера и сеттера -->
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{product.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{product.price}
+            </h:column>
+
+            <!-- Из бина мы можем привязывать не только данные, но и вызовы методов -->
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <h:commandButton value="Edit" action="#{products.editAction(product)}"/>
+                <h:commandButton value="Delete" action="#{products.deleteAction(product)}">
+                    <!-- одной строки достаточно, чтобы элемент удалялся из таблицы без перезагрузки -->
+                    <f:ajax render="productForm"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+    <a href="prime.xhtml">Primefaces example</a>
+
+</h:body>
+
+</html>

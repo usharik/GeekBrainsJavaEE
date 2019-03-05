@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Primefaces product List</title>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+        <p:dataGrid var="product" value="#{products.productList}" columns="3" layout="grid"
+                    rows="12" paginator="true" id="products"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="6,12,16">
+
+            <f:facet name="header">
+                Products
+            </f:facet>
+
+            <p:panel header="#{product.name}" style="text-align:center">
+                <h:panelGrid columns="1" style="width:100%">
+
+                    <h:outputText value="#{product.name}"/>
+
+                    <h:outputText value="#{product.price}"/>
+
+                    <p:commandLink update=":form:productDetail" oncomplete="PF('productDialog').show()"
+                                   title="View Detail">
+                        Detail
+                        <f:setPropertyActionListener value="#{product}" target="#{products.product}"/>
+                    </p:commandLink>
+                </h:panelGrid>
+            </p:panel>
+
+        </p:dataGrid>
+
+        <p:dialog header="Product Info" widgetVar="productDialog" modal="true" showEffect="fade" hideEffect="fade"
+                  resizable="false">
+            <p:outputPanel id="productDetail" style="text-align:center;">
+                <p:panelGrid columns="2" rendered="#{not empty products.product}"
+                             columnClasses="label,value">
+
+                    <h:outputText value="Id:"/>
+                    <h:outputText value="#{products.id}"/>
+
+                    <h:outputText value="Year"/>
+                    <h:outputText value="#{products.name}"/>
+
+                    <h:outputText value="Price"/>
+                    <h:outputText value="$#{products.price}"/>
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+</h:body>
+</html>

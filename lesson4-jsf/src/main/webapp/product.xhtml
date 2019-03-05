@@ -1,0 +1,17 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <h:form>
+        <h:outputLabel for="name-id">Product name:</h:outputLabel>
+        <h:inputText id="name-id" value="#{products.name}" />
+
+        <h:outputLabel for="price-id">Product name:</h:outputLabel>
+        <h:inputText id="price-id" value="#{products.price}" />
+
+        <h:commandButton value="Save" action="#{products.saveProduct}"/>
+    </h:form>
+</h:body>
+
+</html>
