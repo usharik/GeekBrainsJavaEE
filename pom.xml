@@ -23,6 +23,7 @@
         <module>lesson2-filter</module>
         <module>lesson3-jsp</module>
         <module>lesson4-jsf</module>
+        <module>lesson4-jsf-bootstrap</module>
     </modules>
 
     <dependencies>
