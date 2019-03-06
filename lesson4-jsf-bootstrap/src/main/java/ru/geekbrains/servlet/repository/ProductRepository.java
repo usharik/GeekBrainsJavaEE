@@ -1,4 +1,4 @@
-package ru.geekbrains.servlet;
+package ru.geekbrains.servlet.repository;
 
 import ru.geekbrains.servlet.entity.Product;
 

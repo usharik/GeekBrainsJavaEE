@@ -3,10 +3,12 @@ package ru.geekbrains.servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.geekbrains.servlet.entity.Product;
+import ru.geekbrains.servlet.repository.ProductRepository;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Collection;
 
 @ManagedBean(name = "products")
@@ -69,6 +71,6 @@ public class ProductsBean {
 
     public String saveProduct() {
         productRepository.merge(product);
-        return "/index.xhtml?faces-redirect=true";
+        return "/products.xhtml?faces-redirect=true";
     }
 }
