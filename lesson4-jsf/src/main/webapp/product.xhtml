@@ -2,13 +2,25 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<h:head>
+    <!-- Эта строка найдет файл только если он бвдет находится в папке webapp/resources/css/ -->
+    <!-- library тут фактически имя подкаталога в папке resources -->
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
 <h:body>
     <h:form>
-        <h:outputLabel for="name-id">Product name:</h:outputLabel>
-        <h:inputText id="name-id" value="#{products.name}" />
+        <p>
+            <h:outputLabel for="name-id">Product name:</h:outputLabel>
+            <h:inputText id="name-id" value="#{products.name}" required="true" requiredMessage="Product name couldn't be empty"/>
+            <h:message for="name-id" class="error" />
+        </p>
 
-        <h:outputLabel for="price-id">Product name:</h:outputLabel>
-        <h:inputText id="price-id" value="#{products.price}" />
+        <p>
+            <h:outputLabel for="price-id">Product name:</h:outputLabel>
+            <h:inputText id="price-id" value="#{products.price}" required="true" requiredMessage="Price couldn't be empty"/>
+            <h:message for="price-id" class="error" />
+        </p>
 
         <h:commandButton value="Save" action="#{products.saveProduct}"/>
     </h:form>
