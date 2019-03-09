@@ -1,0 +1,20 @@
+# Go to link for more info https://docs.jboss.org/author/display/AS71/CLI+Recipes#CLIRecipes-ScriptedConfiguration
+
+# creating the mysql module in JBOSS_HOME/modules/mysql
+# put here correct path to your MySQL connection driver
+module add \
+    --name=com.mysql.driver \
+    --dependencies=javax.api,javax.transaction.api \
+    --resources=~/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar
+
+# creating driver section in standalone.xml config
+/subsystem=datasources/jdbc-driver=mysql:add( driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver )
+
+# creating datasource section in standalone.xml config
+data-source add \
+    --jndi-name=java:/jboss/MySQLDS \
+    --name=MySQLPool \
+    --connection-url=jdbc:mysql://localhost:3306/javaee_shop \
+    --driver-name=mysql \
+    --user-name=root \
+    --password=root

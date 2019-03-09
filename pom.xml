@@ -24,6 +24,7 @@
         <module>lesson3-jsp</module>
         <module>lesson4-jsf</module>
         <module>lesson4-jsf-bootstrap</module>
+        <module>lesson5-jpa</module>
     </modules>
 
     <dependencies>
