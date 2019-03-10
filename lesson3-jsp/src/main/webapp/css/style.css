@@ -1,3 +1,17 @@
 h1 {
     color: green;
 }
+
+.button {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #aa8d56;
+    color: #aa8d56;
+    outline: medium none;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #aa8d56;
+    color: #ffffff;
+}

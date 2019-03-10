@@ -3,8 +3,10 @@ package ru.geekbrains.servlet;
 import ru.geekbrains.servlet.entity.Product;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Класс-заглушка для репозитория
@@ -13,13 +15,16 @@ import java.util.Map;
  */
 public class ProductRepository {
 
-    private Map<String, Product> productMap = new LinkedHashMap<>();
+    private AtomicInteger sequence = new AtomicInteger();
+
+    private Map<String, Product> productMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
     public ProductRepository() {
-        this.add(new Product("1", "Pen", 50));
-        this.add(new Product("2", "Pencil", 150));
-        this.add(new Product("3", "Textbook", 200));
-        this.add(new Product("4", "Paper", 500));
+        this.merge(new Product("1", "Pen", 50));
+        this.merge(new Product("2", "Pencil", 150));
+        this.merge(new Product("3", "Textbook", 200));
+        this.merge(new Product("4", "Paper", 500));
+        sequence.set(productMap.size());
     }
 
     public Collection<Product> getAll() {
@@ -30,7 +35,14 @@ public class ProductRepository {
         return productMap.get(id);
     }
 
-    public void add(Product product) {
+    public void merge(Product product) {
+        if (product.getId() == null || !productMap.containsKey(product.getId())) {
+            product.setId(String.valueOf(sequence.incrementAndGet()));
+        }
         productMap.put(product.getId(), product);
+    }
+
+    public void delete(Product product) {
+        productMap.remove(product.getId());
     }
 }

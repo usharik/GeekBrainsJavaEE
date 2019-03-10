@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Сервлет - контроллер
  */
-@WebServlet(name = "ProductServletJsp", urlPatterns = "/product_jsp")
+@WebServlet(name = "ProductServletJsp", urlPatterns = "/products_jsp")
 public class ProductServletJsp extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServletJsp.class);

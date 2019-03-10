@@ -1,0 +1,1 @@
+<h1 style="color: red">Exception thrown by query execution</h1>
