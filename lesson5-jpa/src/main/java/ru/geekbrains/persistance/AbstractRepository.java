@@ -8,7 +8,6 @@ import ru.geekbrains.persistance.entity.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.*;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,19 +31,13 @@ public abstract class AbstractRepository<T extends EntityId> {
 
     public abstract Collection<T> getAll();
 
-    protected abstract void beginTran() throws SystemException, NotSupportedException;
-
-    protected abstract void commitTran() throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException;
-
     public void merge(T entity) {
         if (entity == null) {
             return;
         }
         logger.info("Merge entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
-            beginTran();
             entityManager.merge(entity);
-            commitTran();
         } catch (Exception ex) {
             logger.error("Error with entity class {}" , entity.getClass().getSimpleName(), ex);
             throw new IllegalStateException(ex);
@@ -57,12 +50,10 @@ public abstract class AbstractRepository<T extends EntityId> {
         }
         logger.info("Removing entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
-            beginTran();
             Product attached = entityManager.find(Product.class, entity.getId());
             if (attached != null) {
                 entityManager.remove(attached);
             }
-            commitTran();
         } catch (Exception ex) {
             logger.error("Error with entity class {}" , entity.getClass().getSimpleName(), ex);
             throw new IllegalStateException(ex);

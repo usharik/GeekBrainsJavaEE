@@ -4,25 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.geekbrains.persistance.entity.Product;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.transaction.*;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import java.io.Serializable;
 import java.util.Collection;
 
-/**
- * Класс-заглушка для репозитория
- * через несколько уроков мы его заменим на
- * полноценный JPA репозиторий
- */
+
 @Stateless
-@TransactionManagement(javax.ejb.TransactionManagementType.BEAN)
-public class ProductRepository extends AbstractRepository<Product> {
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+public class ProductRepository extends AbstractRepository<Product> implements Serializable {
 
     private static Logger logger = LoggerFactory.getLogger(ProductRepository.class);
-
-    @Resource
-    protected UserTransaction tran;
 
     @Override
     public Product getById(long id) {
@@ -42,15 +35,5 @@ public class ProductRepository extends AbstractRepository<Product> {
         return entityManager.createQuery("select p from Product p where p.category.id = :id")
                 .setParameter("id", categoryId)
                 .getResultList();
-    }
-
-    @Override
-    protected void beginTran() throws SystemException, NotSupportedException {
-        tran.begin();
-    }
-
-    @Override
-    protected void commitTran() throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException {
-        tran.commit();
     }
 }

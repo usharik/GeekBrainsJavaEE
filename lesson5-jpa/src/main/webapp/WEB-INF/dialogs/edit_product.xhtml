@@ -13,22 +13,24 @@
                          columnClasses="label,value">
 
                 <h:outputText value="Id:"/>
-                <h:outputText value="#{products.id}"/>
+                <h:outputText value="#{products.product.id}"/>
 
                 <h:outputText value="Category:"/>
-                <p:selectOneMenu value="#{products.categoryId}" style="width:150px">
+                <p:selectOneMenu value="#{products.categoryId}" >
                     <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
                     <f:selectItems value="#{categories.all}" var="cat" itemValue="#{cat.id}" itemLabel="#{cat.name}"/>
                 </p:selectOneMenu>
 
                 <h:outputText value="Name"/>
-                <h:inputText value="#{products.name}"/>
+                <h:inputText value="#{products.product.name}"/>
 
                 <h:outputText value="Price"/>
-                <h:inputText value="#{products.price}"/>
+                <h:inputText value="#{products.product.price}"/>
             </p:panelGrid>
 
-            <h:commandButton value="Save" action="#{products.saveProduct}"/>
+            <p:commandButton update="@form" value="Save" style="margin-top: 7px"
+                             action="#{products.saveProduct}"
+                             oncomplete="PF('productDialog').hide()" ajax="true"/>
         </p:outputPanel>
     </p:dialog>
 </ui:composition>

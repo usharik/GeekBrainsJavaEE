@@ -8,24 +8,23 @@ import ru.geekbrains.persistance.entity.Category;
 import ru.geekbrains.persistance.CategoryRepository;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@ManagedBean(name = "categories")
+@Named("categories")
 @SessionScoped
-public class CategoriesBean {
+public class CategoriesBean implements Serializable {
 
     private static Logger logger = LoggerFactory.getLogger(CategoriesBean.class);
 
     private static String CATEGORY_ID ="categoryId";
-
-    private DynamicMenuModel model;
 
     @Inject
     private CategoryRepository categoryRepository;
@@ -33,6 +32,8 @@ public class CategoriesBean {
     private Category category;
 
     private Collection<Category> categoryList;
+
+    private DynamicMenuModel model;
 
     public Category getCategory() {
         return category;
@@ -77,10 +78,10 @@ public class CategoriesBean {
     }
 
     public String actionSelectCategory(ActionEvent event) {
-        logger.info("Selecting category with");
-
         MenuItem menuItem = ((MenuActionEvent) event).getMenuItem();
         String id = menuItem.getParams().get(CATEGORY_ID).get(0);
+
+        logger.info("Selecting category with id {}", id);
 
         this.category = categoryRepository.getById(Long.valueOf(id));
         return "/index.xhtml?faces-redirect=true";

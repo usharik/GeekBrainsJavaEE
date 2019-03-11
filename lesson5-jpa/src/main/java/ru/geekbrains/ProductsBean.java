@@ -7,19 +7,19 @@ import ru.geekbrains.persistance.entity.Category;
 import ru.geekbrains.persistance.entity.Product;
 import ru.geekbrains.persistance.ProductRepository;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Collection;
 
 
-@ManagedBean(name = "products")
-@SessionScoped // будьте осторожны с бинами Scoped. Они есть как в JSF так и в CDI
-public class ProductsBean {
+@Named("products")
+@SessionScoped
+public class ProductsBean implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductsBean.class);
 
@@ -29,7 +29,7 @@ public class ProductsBean {
     @Inject
     private CategoryRepository categoryRepository;
 
-    @ManagedProperty(value="#{categories}")
+    @Inject
     private CategoriesBean categoriesBean;
 
     // наличие такого поля для хранения текущего элемента является стандартным для JSF
@@ -49,30 +49,6 @@ public class ProductsBean {
             return;
         }
         productList = productRepository.getAll();
-    }
-
-    public String getId() {
-        return String.valueOf(product.getId());
-    }
-
-    public void setId(String id) {
-        product.setId(Long.valueOf(id));
-    }
-
-    public String getName() {
-        return product.getName();
-    }
-
-    public void setName(String name) {
-        product.setName(name);
-    }
-
-    public int getPrice() {
-        return product.getPrice();
-    }
-
-    public void setPrice(int price) {
-        product.setPrice(price);
     }
 
     public Product getProduct() {
@@ -119,9 +95,8 @@ public class ProductsBean {
         productRepository.remove(product);
     }
 
-    public String saveProduct() {
+    public void saveProduct() {
         productRepository.merge(product);
-        return "/index.xhtml?faces-redirect=true"; // после сохранения продукта возвращаемся на главную страницу
     }
 
     public void setCategoriesBean(CategoriesBean categoriesBean) {
