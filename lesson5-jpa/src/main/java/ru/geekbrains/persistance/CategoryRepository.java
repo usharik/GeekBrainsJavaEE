@@ -17,30 +17,17 @@ import java.util.Collection;
  */
 @Stateless
 @TransactionManagement(javax.ejb.TransactionManagementType.BEAN)
-public class CategoryRepository extends AbstractRepository {
+public class CategoryRepository extends AbstractRepository<Category> {
 
     private static Logger logger = LoggerFactory.getLogger(CategoryRepository.class);
 
     @Resource
     protected UserTransaction tran;
 
-    public void init() {
-        logger.info("Initializing product data");
-        try {
-            if (getAll().isEmpty()) {
-                tran.begin();
-                entityManager.persist(new Category("Calendars and Planners"));
-                entityManager.persist(new Category("Calculators"));
-                entityManager.persist(new Category("Scissors and Paper Trimmers"));
-                tran.commit();
-            }
-        } catch (Throwable thr) {
-            logger.error("Error", thr);
-        }
-    }
-
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<Category> getAll() {
+        logger.info("Get all categories");
         return entityManager.createQuery("select c from Category c").getResultList();
     }
 
@@ -56,6 +43,7 @@ public class CategoryRepository extends AbstractRepository {
 
     @Override
     public Category getById(long id) {
+        logger.info("Get category with id {}", id);
         return entityManager.find(Category.class, id);
     }
 }

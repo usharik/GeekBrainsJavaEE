@@ -40,6 +40,7 @@ public abstract class AbstractRepository<T extends EntityId> {
         if (entity == null) {
             return;
         }
+        logger.info("Merge entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
             beginTran();
             entityManager.merge(entity);
@@ -54,6 +55,7 @@ public abstract class AbstractRepository<T extends EntityId> {
         if (entity == null) {
             return;
         }
+        logger.info("Removing entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
             beginTran();
             Product attached = entityManager.find(Product.class, entity.getId());

@@ -24,54 +24,24 @@ public class ProductRepository extends AbstractRepository<Product> {
     @Resource
     protected UserTransaction tran;
 
-    public void init() {
-        logger.info("Initializing product data");
-        try {
-            if (getAll().isEmpty()) {
-                tran.begin();
-                entityManager.merge(new Product("Pen", 50, 1));
-                entityManager.merge(new Product("Pencil", 150, 1));
-                entityManager.merge(new Product("Textbook", 201, 1));
-                entityManager.merge(new Product("Paper", 500,1));
-                entityManager.merge(new Product("Pen", 50, 1));
-                entityManager.merge(new Product("Eraser", 150, 1));
-                entityManager.merge(new Product("Marker", 200, 1));
-                entityManager.merge(new Product("Sticks", 500, 2));
-                entityManager.merge(new Product("Brash", 50, 2));
-                entityManager.merge(new Product("Pencil", 150, 2));
-                entityManager.merge(new Product("Textbook", 200, 2));
-                entityManager.merge(new Product("Paper", 500, 3));
-                entityManager.merge(new Product("Pen", 50, 3));
-                entityManager.merge(new Product("Pencil", 150, 3));
-                entityManager.merge(new Product("Textbook", 200, 3));
-                entityManager.merge(new Product("Paper", 500, 3));
-                tran.commit();
-            }
-        } catch (Throwable thr) {
-            logger.error("Error", thr);
-        }
-    }
-
     @Override
     public Product getById(long id) {
         return entityManager.find(Product.class, id);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<Product> getAll() {
+        logger.info("Fetching All Products");
         return entityManager.createQuery("select p from Product p").getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<Product> getByCategory(long categoryId) {
-        return entityManager.createQuery("select p from Product p where p.categoryId = :categoryId")
-                .setParameter("categoryId", categoryId)
+        logger.info("Fetching Products by Category with id {}", categoryId);
+        return entityManager.createQuery("select p from Product p where p.category.id = :id")
+                .setParameter("id", categoryId)
                 .getResultList();
-    }
-
-    public Product getById(Long id) {
-        return (Product) entityManager.createQuery("select p from Product p where p.id = :id")
-                .setParameter("id", id)
-                .getSingleResult();
     }
 
     @Override

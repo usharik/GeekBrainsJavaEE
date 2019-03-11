@@ -2,14 +2,18 @@ package ru.geekbrains;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.geekbrains.persistance.CategoryRepository;
+import ru.geekbrains.persistance.entity.Category;
 import ru.geekbrains.persistance.entity.Product;
 import ru.geekbrains.persistance.ProductRepository;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.util.Collection;
 
 
@@ -22,11 +26,30 @@ public class ProductsBean {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
+    private CategoryRepository categoryRepository;
+
     @ManagedProperty(value="#{categories}")
     private CategoriesBean categoriesBean;
 
     // наличие такого поля для хранения текущего элемента является стандартным для JSF
     private Product product;
+
+    private Collection<Product> productList;
+
+    public void preloadProductList(ComponentSystemEvent event) throws AbortProcessingException {
+        boolean postback = FacesContext.getCurrentInstance().isPostback();
+        boolean ajaxRequest = FacesContext.getCurrentInstance().getPartialViewContext().isAjaxRequest();
+
+        logger.info("Preloading products from database postback={}, ajaxrequest={}", postback, ajaxRequest);
+
+        if (categoriesBean.getCategory() != null) {
+            logger.info("Category id {}", categoriesBean.getCategory().getId());
+            productList = productRepository.getByCategory(categoriesBean.getCategory().getId());
+            return;
+        }
+        productList = productRepository.getAll();
+    }
 
     public String getId() {
         return String.valueOf(product.getId());
@@ -60,18 +83,42 @@ public class ProductsBean {
         this.product = product;
     }
 
-    public Collection<Product> getProductList() {
-        if (categoriesBean.getCategory() != null) {
-            return productRepository.getByCategory(Long.valueOf(categoriesBean.getCategory().getId()));
+    public String getCategoryId() {
+        if (product == null || product.getCategory() == null) {
+            logger.warn("Product is null or empty");
+            return "-1L";
         }
-        return productRepository.getAll();
+        return String.valueOf(product.getCategory().getId());
+    }
+
+    public void setCategoryId(String id) {
+        if (id == null || id.isEmpty()) {
+            logger.warn("Set category id is null or empty");
+            return;
+        }
+        Category newCategory = categoryRepository.getById(Long.valueOf(id));
+        if (newCategory != null) {
+            product.setCategory(newCategory);
+        }
+    }
+
+    public Collection<Product> getProductList() {
+        logger.info("Get product list");
+
+        return productList;
+    }
+
+    public void newProductAction() {
+        this.product = new Product();
+        this.product.setCategory(categoriesBean.getCategory());
     }
 
     public void deleteAction(Product product) {
+        logger.info("Delete product");
+
         productRepository.remove(product);
     }
 
-    @Transactional
     public String saveProduct() {
         productRepository.merge(product);
         return "/index.xhtml?faces-redirect=true"; // после сохранения продукта возвращаемся на главную страницу

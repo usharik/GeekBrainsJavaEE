@@ -13,9 +13,9 @@
             <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
 
-            <!--<property name="hibernate.show_sql" value="true"/>-->
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>-->
-            <!--<property name="hibernate.format_sql" value="true"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

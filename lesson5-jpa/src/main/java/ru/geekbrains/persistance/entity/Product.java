@@ -21,17 +21,17 @@ public class Product implements EntityId, Serializable {
     private int price;
 
     @NotNull
-    @Column(name = "categoryId")
-    private Long categoryId;
+    @ManyToOne
+    private Category category;
 
     public Product() {
-
+        id = -1L;
     }
 
-    public Product(String name, int price, long categoryId) {
+    public Product(String name, int price, Category category) {
         this.name = name;
         this.price = price;
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     @Override
@@ -60,11 +60,11 @@ public class Product implements EntityId, Serializable {
         this.price = price;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

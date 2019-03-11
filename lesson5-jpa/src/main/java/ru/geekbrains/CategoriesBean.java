@@ -10,8 +10,11 @@ import ru.geekbrains.persistance.CategoryRepository;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @ManagedBean(name = "categories")
@@ -29,6 +32,8 @@ public class CategoriesBean {
 
     private Category category;
 
+    private Collection<Category> categoryList;
+
     public Category getCategory() {
         return category;
     }
@@ -38,29 +43,35 @@ public class CategoriesBean {
     }
 
     public Collection<Category> getAll() {
-        return categoryRepository.getAll();
+        logger.info("Get categories");
+        return categoryList;
     }
 
     @PostConstruct
     private void init() {
         model = new DynamicMenuModel();
+        categoryList = new ArrayList<>();
     }
 
-    public MenuModel getModel() {
-
-        model.getElements().clear();
+    public void preloadCategoriesList(ComponentSystemEvent event) throws AbortProcessingException {
+        logger.info("Preloading categories form database.");
 
         model.getElements().clear();
 
         DefaultSubMenu categoriesSubmenu = new DefaultSubMenu("Categories");
         categoriesSubmenu.setExpanded(true);
 
-        for (Category category : categoryRepository.getAll()) {
+        categoryList = categoryRepository.getAll();
+        for (Category category : categoryList) {
             categoriesSubmenu.addElement(createMenuItem(String.valueOf(category.getId()), category.getName()));
         }
         model.addElement(categoriesSubmenu);
 
         model.generateUniqueIds();
+    }
+
+    public MenuModel getModel() {
+        logger.info("Get category model");
 
         return model;
     }

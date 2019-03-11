@@ -3,6 +3,8 @@ package ru.geekbrains.persistance.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
+
 
 @Entity
 @Table(name = "Categories")
@@ -16,6 +18,12 @@ public class Category implements EntityId, Serializable {
     @NotNull
     @Column(name = "name")
     private String name;
+
+    @OneToMany(
+            mappedBy = "category",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
+    private List<Product> products;
 
     public Category() {
 
