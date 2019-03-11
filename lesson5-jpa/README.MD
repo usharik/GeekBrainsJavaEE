@@ -2,7 +2,10 @@
 
 ## Setting up database driver and datasource on server
 
-To setup database driver and datasource on Wildfly server you can use script [datasource.cli](./datasource.cli) in the root of the project. Before using of it you have to put there correct path to downloaded file of MySQL driver.
+To setup database driver and datasource on Wildfly server you can use script [datasource.cli](./datasource.cli) in the root of the project. Before using of it you have to 
+* install and configure MySQL server
+* download MySQL connector driver and put path to it into this script
+* create on MYSQL database with name _javaee_shop_ 
 
 There are two ways how to run this script:
 * With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --file datasource.cli`
