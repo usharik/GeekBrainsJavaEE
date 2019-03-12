@@ -38,6 +38,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-impl:2.2.18" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:7.0.RC3" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.themes:all-themes:1.0.10" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces.extensions:primefaces-extensions:7.0.RC1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise:cdi-api:2.0.SP1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.el:javax.el-api:3.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.interceptor:javax.interceptor-api:1.2" level="project" />

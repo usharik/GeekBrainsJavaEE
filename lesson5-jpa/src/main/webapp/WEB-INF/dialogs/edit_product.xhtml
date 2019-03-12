@@ -22,10 +22,10 @@
                 </p:selectOneMenu>
 
                 <h:outputText value="Name"/>
-                <h:inputText value="#{products.product.name}"/>
+                <p:inputText value="#{products.product.name}"/>
 
                 <h:outputText value="Price"/>
-                <h:inputText value="#{products.product.price}"/>
+                <p:inputNumber value="#{products.product.price}"/>
             </p:panelGrid>
 
             <p:commandButton update="@form" value="Save" style="margin-top: 7px"

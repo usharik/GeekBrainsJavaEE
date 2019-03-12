@@ -3,14 +3,16 @@ package ru.geekbrains.persistance.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "Products")
 public class Product implements EntityId, Serializable {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotNull
     @Column(name = "name")
@@ -18,17 +20,17 @@ public class Product implements EntityId, Serializable {
 
     @NotNull
     @Column(name = "price")
-    private int price;
+    private BigDecimal price;
 
     @NotNull
     @ManyToOne
     private Category category;
 
     public Product() {
-        id = -1L;
+
     }
 
-    public Product(String name, int price, Category category) {
+    public Product(String name, BigDecimal price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -52,11 +54,11 @@ public class Product implements EntityId, Serializable {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

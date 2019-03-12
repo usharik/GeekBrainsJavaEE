@@ -31,13 +31,13 @@ public abstract class AbstractRepository<T extends EntityId> {
 
     public abstract Collection<T> getAll();
 
-    public void merge(T entity) {
+    public T merge(T entity) {
         if (entity == null) {
-            return;
+            return null;
         }
         logger.info("Merge entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
-            entityManager.merge(entity);
+            return entityManager.merge(entity);
         } catch (Exception ex) {
             logger.error("Error with entity class {}" , entity.getClass().getSimpleName(), ex);
             throw new IllegalStateException(ex);

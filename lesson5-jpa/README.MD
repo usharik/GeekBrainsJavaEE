@@ -8,7 +8,7 @@ To setup database driver and datasource on Wildfly server you can use script [da
 * create on MYSQL database with name _javaee_shop_ 
 
 There are two ways how to run this script:
-* With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --file datasource.cli`
+* With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --connect --file datasource.cli`
 * With maven Wildfly plugin. _JBOSS_HOME_ environment variable should be defined here or _<jboss_home>_ parameter should be defined in pom file.
 Command is `# mvn wildfly:execute-commands`
 
@@ -18,6 +18,7 @@ As you can see file [datasource.cli](./datasource.cli) contains three commands
 2. **/subsystem=datasources** command add driver section for new driver into file _JBOSS_HOME/standalone/configuration/standalone.xml_
 3. **data-source add** command add new datasource section into file _JBOSS_HOME/standalone/configuration/standalone.xml_
 
+[Here](https://docs.jboss.org/author/display/AS71/CLI+Recipes#CLIRecipes-ScriptedConfiguration) you can find more info about Wildfly CLI # Go to link for more info
 That's not only way to setup database driver and datasource on Wildfly all described changes in setup files could be made manually.
 
 ## Default H2 database in Wildfly
