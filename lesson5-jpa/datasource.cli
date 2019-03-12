@@ -8,7 +8,7 @@ module add \
     --resources=~/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar
 
 # 2. creating driver section in standalone.xml config
-/subsystem=datasources/jdbc-driver=mysql:add( driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver )
+/subsystem=datasources/jdbc-driver=mysql:add( driver-name=mysql, driver-module-name=com.mysql.driver, driver-class-name=com.mysql.jdbc.Driver )
 
 # 3. creating datasource section in standalone.xml config
 data-source add \
