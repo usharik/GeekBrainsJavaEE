@@ -25,6 +25,8 @@
         <module>lesson4-jsf</module>
         <module>lesson4-jsf-bootstrap</module>
         <module>lesson5-jpa</module>
+        <module>lesson6-jms</module>
+        <module>lesson6-jms-client</module>
     </modules>
 
     <dependencies>
