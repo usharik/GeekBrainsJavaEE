@@ -29,25 +29,26 @@ public class JMSClient {
 
         JMSProducer producer = context.createProducer();
 
+        JMSConsumer consumer = context
+                .createConsumer(destination, "source = 'server'");
+
+        consumer.setMessageListener(message -> {
+            if (message instanceof TextMessage) {
+                try {
+                    System.out.print(String.format("\nNew message from server: %s\nEnter message: ", ((TextMessage) message).getText()));
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         System.out.print("Enter message: ");
         try (Scanner sc = new Scanner(System.in)) {
             while (sc.hasNextLine()) {
                 String msg = sc.nextLine();
-                producer.send(destination, msg);
-                System.out.println("Sent message: " + msg);
+                producer.setProperty("source", "client").send(destination, msg);
                 System.out.print("Enter message: ");
             }
         }
-
-//
-//        // Create the JMS consumer
-//        JMSConsumer consumer = context.createConsumer(destination);
-//        // Then receive the same number of messages that were sent
-//
-//        String text = consumer.receiveBody(String.class, 5000);
-//        if (text == null)
-//            System.out.println("No message Received! Maybe another Consumer listening on the Queue ??");
-//        System.out.println("Received message with content " + text);
-
     }
 }

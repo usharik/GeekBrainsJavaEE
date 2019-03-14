@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+    <title>Primefaces product List</title>
+
+    <script>
+        function scrollDown(data) {
+            if (data.status === "success") {
+                let scroller = document.getElementById('scroller');
+                scroller.scrollTop = scroller.scrollHeight;
+            }
+        }
+    </script>
+</h:head>
+
+<h:body>
+
+    <h2>JMS Chat</h2>
+
+    <div id="scroller" style="width: 400pt; height: 200pt; overflow-y: scroll; border-style: solid">
+        <h:dataTable id="notifications" value="#{chatBean.messages}" var="notification">
+            <h:column>
+                <f:facet name="header">Date</f:facet>
+                #{notification.date}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Sender</f:facet>
+                #{notification.sender}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Text</f:facet>
+                #{notification.text}
+            </h:column>
+        </h:dataTable>
+    </div>
+
+    <h:form>
+        <h:inputText id="textMsg" value="#{chatBean.textMsg}"/>
+
+        <h:commandButton action="#{chatBean.sendPush}" value="Send message">
+            <f:ajax execute="@form" render=":notifications @form" onevent="scrollDown"/>
+        </h:commandButton>
+    </h:form>
+
+    <h:form>
+        <o:socket channel="viewPush">
+            <f:ajax event="newMsg" render=":notifications" onevent="scrollDown"/>
+        </o:socket>
+    </h:form>
+
+</h:body>
+</html>
