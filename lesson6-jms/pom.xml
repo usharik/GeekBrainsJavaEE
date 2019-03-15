@@ -62,6 +62,12 @@
         </dependency>
 
         <dependency>
+            <groupId>ru.geekbrains.java.ee</groupId>
+            <artifactId>lesson6-jms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>

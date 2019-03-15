@@ -1,11 +1,9 @@
 package ru.geekbrains;
 
-import java.util.Properties;
 import java.util.Scanner;
 
 import javax.jms.*;
 import javax.naming.Context;
-import javax.naming.InitialContext;
 
 public class JMSClient {
 
@@ -13,9 +11,7 @@ public class JMSClient {
     private static String DESTINATION = "jms/queue/TestQueue";
 
     public static void main(String[] args) throws Exception {
-        final Properties env = new Properties();
-        env.load(JMSClient.class.getClassLoader().getResourceAsStream("wildfly-jndi.properties"));
-        Context namingContext = new InitialContext(env);
+        Context namingContext = Utils.createInitialContext();
 
         ConnectionFactory connectionFactory = (ConnectionFactory) namingContext
                 .lookup(CONNECTION_FACTORY);
