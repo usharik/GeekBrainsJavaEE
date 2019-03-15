@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.*;
+import javax.enterprise.event.Event;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 import javax.jms.*;
@@ -17,7 +18,7 @@ public class JmsReceiver implements MessageListener {
     private static Logger logger = LoggerFactory.getLogger(JmsReceiver.class);
 
     @Inject
-    private BeanManager beanManager;
+    private Event<Message> sendMessageEvent;
 
     @Override
     public void onMessage(javax.jms.Message message) {
@@ -25,7 +26,7 @@ public class JmsReceiver implements MessageListener {
             if (message instanceof TextMessage) {
                 String text = ((TextMessage) message).getText();
                 logger.info("Got message {}", text);
-                beanManager.fireEvent(text);
+                sendMessageEvent.fire(new Message("Client", text));
             }
         } catch (JMSException ex) {
             logger.error("JMS Exception", ex);

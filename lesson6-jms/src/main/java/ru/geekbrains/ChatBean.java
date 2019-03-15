@@ -43,9 +43,9 @@ public class ChatBean implements Serializable {
         messages = new ArrayList<>();
     }
 
-    public void onNewMessage(@Observes String str) {
+    public void onNewMessage(@Observes Message msg) {
         logger.info("Sending push notification");
-        messages.add(new Message("Client", str));
+        messages.add(msg);
         viewPush.send("newMsg");
     }
 
