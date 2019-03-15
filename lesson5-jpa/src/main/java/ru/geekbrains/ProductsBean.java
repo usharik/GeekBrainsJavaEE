@@ -32,6 +32,9 @@ public class ProductsBean implements Serializable {
     @Inject
     private CategoriesBean categoriesBean;
 
+    @Inject
+    private CartViewBean cartViewBean;
+
     // наличие такого поля для хранения текущего элемента является стандартным для JSF
     private Product product;
 
@@ -94,6 +97,17 @@ public class ProductsBean implements Serializable {
 
         productRepository.remove(product);
     }
+
+    public void addToCart(Product product) {
+        cartViewBean.addToCard(product);
+    }
+
+    public String logout() {
+        logger.info("Logging out");
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
+    }
+
 
     public void saveProduct() {
         productRepository.merge(product);

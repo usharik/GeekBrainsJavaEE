@@ -28,6 +28,8 @@ public class ChatBean implements Serializable {
 
     private String textMsg = "";
 
+    // Push-канал для передачи новых сообщений в барузер
+    // через web socket. Подробнее http://showcase.omnifaces.org/push/socket
     @Inject
     @Push
     private PushContext viewPush;
@@ -43,6 +45,7 @@ public class ChatBean implements Serializable {
         messages = new ArrayList<>();
     }
 
+    // Класс-слушатель сообщений, которые отправляются из JmsReceiver
     public void onNewMessage(@Observes Message msg) {
         logger.info("Sending push notification");
         messages.add(msg);
@@ -61,11 +64,13 @@ public class ChatBean implements Serializable {
         this.textMsg = textMsg;
     }
 
-    public void sendPush() {
+    public void sendMessage() {
         logger.info("Sending message {}", textMsg);
 
         messages.add(new Message("Server", textMsg));
 
+        // отправка сообщений происходит точно также как и в приложении клиенте
+        // только для получения серверных ресурсов используется аннотация @Resource
         try (JMSContext context = connectionFactory.createContext()) {
             context.createProducer().setProperty("source", "server")
                     .send(queue, textMsg);

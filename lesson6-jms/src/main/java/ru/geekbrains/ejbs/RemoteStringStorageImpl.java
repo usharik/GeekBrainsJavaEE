@@ -23,11 +23,12 @@ public class RemoteStringStorageImpl implements RemoteStringStorage, Serializabl
     private final UUID id = UUID.randomUUID();
 
     public RemoteStringStorageImpl() {
-        logger.info("New Stateful bean with id" + id);
+        logger.info("New Stateful bean with id {}", id);
     }
 
     @Override
     public void putString(String str) {
+        logger.info("New string {} into bean id {}", str, id);
         strings.add(str);
     }
 

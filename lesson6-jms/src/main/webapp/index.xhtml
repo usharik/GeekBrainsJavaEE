@@ -47,7 +47,7 @@
     <h:form>
         <h:inputText id="textMsg" value="#{chatBean.textMsg}"/>
 
-        <h:commandButton action="#{chatBean.sendPush}" value="Send message">
+        <h:commandButton action="#{chatBean.sendMessage}" value="Send message">
             <f:ajax execute="@form" render=":notifications @form" onevent="scrollDown"/>
         </h:commandButton>
     </h:form>

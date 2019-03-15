@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.*;
 import javax.enterprise.event.Event;
-import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 import javax.jms.*;
 
@@ -17,6 +16,7 @@ public class JmsReceiver implements MessageListener {
 
     private static Logger logger = LoggerFactory.getLogger(JmsReceiver.class);
 
+    // Сообщения - очень полезная функция из библиотеки CDI
     @Inject
     private Event<Message> sendMessageEvent;
 
