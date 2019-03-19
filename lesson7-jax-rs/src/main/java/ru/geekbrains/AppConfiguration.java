@@ -6,9 +6,9 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/api")
-public class SwaggerConfiguration extends Application {
+public class AppConfiguration extends Application {
 
-    public SwaggerConfiguration() {
+    public AppConfiguration() {
         init();
     }
 

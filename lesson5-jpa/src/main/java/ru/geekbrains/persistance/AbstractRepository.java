@@ -31,6 +31,8 @@ public abstract class AbstractRepository<T extends EntityId> {
 
     public abstract Collection<T> getAll();
 
+    public abstract long count();
+
     public T merge(T entity) {
         if (entity == null) {
             return null;
@@ -50,7 +52,7 @@ public abstract class AbstractRepository<T extends EntityId> {
         }
         logger.info("Removing entity of class {} with id {}", entity.getClass().getSimpleName(), entity.getId());
         try {
-            Product attached = entityManager.find(Product.class, entity.getId());
+            T attached = getById(entity.getId());
             if (attached != null) {
                 entityManager.remove(attached);
             }

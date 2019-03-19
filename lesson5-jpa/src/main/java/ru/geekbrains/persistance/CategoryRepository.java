@@ -25,6 +25,12 @@ public class CategoryRepository extends AbstractRepository<Category> implements 
     }
 
     @Override
+    public long count() {
+        return (Long) entityManager.createQuery("select count(*) from Category c")
+                .getSingleResult();
+    }
+
+    @Override
     public Category getById(long id) {
         logger.info("Get category with id {}", id);
         return entityManager.find(Category.class, id);

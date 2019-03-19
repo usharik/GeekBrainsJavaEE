@@ -6,7 +6,7 @@ import java.net.URL;
 public class WebClient {
 
     public static void main(String[] args) throws MalformedURLException {
-        URL url = new URL("http://localhost:8080/lesson7jaxws/SampleServiceImpl?WSDL");
+        URL url = new URL("http://localhost:8087/SampleService?WSDL");
         SampleServiceImplService sampleServiceImplService = new SampleServiceImplService(url);
         SampleService sampleService = sampleServiceImplService.getSampleServiceImplPort();
 

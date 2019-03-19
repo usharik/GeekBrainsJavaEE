@@ -14,7 +14,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <name>lesson2 JavaEE servlet API</name>
+    <name>Lesson 2 JavaEE servlet API</name>
 
     <dependencies>
         <dependency>

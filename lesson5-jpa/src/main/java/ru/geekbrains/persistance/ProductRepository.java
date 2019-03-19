@@ -38,6 +38,12 @@ public class ProductRepository extends AbstractRepository<Product> implements Se
         return entityManager.createQuery(query).getResultList();
     }
 
+    @Override
+    public long count() {
+        return (Long) entityManager.createQuery("select count(*) from Product p")
+                .getSingleResult();
+    }
+
     @SuppressWarnings("unchecked")
     public Collection<Product> getByCategory(long categoryId) {
         logger.info("Fetching Products by Category with id {}", categoryId);

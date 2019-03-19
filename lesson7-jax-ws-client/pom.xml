@@ -9,6 +9,8 @@
     <artifactId>lesson7-jax-ws-client</artifactId>
     <version>1.0.0</version>
 
+    <name>Lesson 7 JAX-WS SOAP web service client</name>
+
     <build>
         <finalName>lesson7-jax-ws-client</finalName>
 
@@ -24,7 +26,7 @@
                         </goals>
                         <configuration>
                             <wsdlUrls>
-                                <wsdlUrl>http://localhost:8080/lesson7jaxws/SampleServiceImpl?WSDL</wsdlUrl>
+                                <wsdlUrl>http://localhost:8087/SampleService?WSDL</wsdlUrl>
                             </wsdlUrls>
                         </configuration>
                     </execution>

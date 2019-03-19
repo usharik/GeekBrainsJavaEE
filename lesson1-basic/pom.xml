@@ -14,7 +14,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <name>lesson1 JavaEE basics</name>
+    <name>Lesson 1 JavaEE basics</name>
 
     <build>
         <finalName>lesson1</finalName>

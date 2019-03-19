@@ -11,7 +11,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <name>Lesson3 JSP and JSTL</name>
+    <name>Lesson 3 JSP and JSTL</name>
 
     <artifactId>lesson3-jsp</artifactId>
     <version>1.0.0</version>
