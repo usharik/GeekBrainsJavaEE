@@ -25,5 +25,14 @@ That's not only way to setup database driver and datasource on Wildfly all descr
 Also worth to mention that by default Wildfly have configured testing datasource with JNDI name _"java:jboss/datasource/ExampleDS"_. This datasource is using relational database H@ with in-memory mode.
 
 ## JPA configuration in application
-To use database connection from server in application you need to create file [persistence.xml](./src/main/resources/META-INF/persistence.xml). In app sources this file have to be placed in folder resources/META-INF. You can find name of created datasource in this file.   
- 
+To use database connection from server in application you need to create file [persistence.xml](./src/main/resources/META-INF/persistence.xml). In app sources this file have to be placed in folder resources/META-INF. You can find name of created datasource in this file.
+
+## Liquibase usage
+This module use Liquibase to maintain changes of database structure. Code first approach is used here. 
+To uptake changes into [liquibase change log](src/main/resources/liquibase-diff-changeLog.xml) you should run 
+```
+mvn clean install liquibase:diff
+mvn clean install
+```
+Don't run liquibase:diff multiple times. That could cause duplicates in liquibase change log. 
+Some information about Liquibase with Hibernate integration https://github.com/liquibase/liquibase-hibernate/wiki 
