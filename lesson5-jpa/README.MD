@@ -34,6 +34,10 @@ To uptake changes into [liquibase change log](src/main/resources/liquibase-diff-
 mvn clean install liquibase:diff
 mvn clean install
 ```
-Don't run liquibase:diff multiple times. That could cause duplicates in liquibase change log. 
-Some information about Liquibase with Hibernate integration https://github.com/liquibase/liquibase-hibernate/wiki
-About CSV data import with Liquibase and ignoring columns in import data https://sadalage.com/blog/2017/05/15/using-liquibase-to-load-data-and-ignore-some-columns/ 
+Don't run liquibase:diff multiple times. That could cause duplicates in liquibase change log.
+
+Some links about liquibase usage:
+* https://github.com/liquibase/liquibase-hibernate/wiki
+* https://sadalage.com/blog/2017/05/15/using-liquibase-to-load-data-and-ignore-some-columns
+* https://www.wiktordyngosz.pl/25-02-2019-liquibase
+* https://www.baeldung.com/liquibase-refactor-schema-of-java-app
