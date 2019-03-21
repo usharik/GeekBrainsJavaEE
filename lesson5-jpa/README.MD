@@ -5,7 +5,7 @@
 To setup database driver and datasource on Wildfly server you can use script [datasource.cli](./datasource.cli) in the root of the project. Before using of it you have to 
 * install and configure MySQL server
 * download MySQL connector driver and put path to it into this script
-* create on MYSQL database with name _javaee_shop_ 
+* create on MySQL database with name _javaee_shop_ 
 
 There are two ways how to run this script:
 * With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --connect --file datasource.cli`
@@ -35,4 +35,5 @@ mvn clean install liquibase:diff
 mvn clean install
 ```
 Don't run liquibase:diff multiple times. That could cause duplicates in liquibase change log. 
-Some information about Liquibase with Hibernate integration https://github.com/liquibase/liquibase-hibernate/wiki 
+Some information about Liquibase with Hibernate integration https://github.com/liquibase/liquibase-hibernate/wiki
+About CSV data import with Liquibase and ignoring columns in import data https://sadalage.com/blog/2017/05/15/using-liquibase-to-load-data-and-ignore-some-columns/ 

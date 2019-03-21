@@ -3,7 +3,6 @@ package ru.geekbrains.persistance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.geekbrains.persistance.entity.EntityId;
-import ru.geekbrains.persistance.entity.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -30,7 +30,7 @@ public class ProductRepository extends AbstractRepository<Product> implements Se
         logger.info("Fetching All Products");
 
         // Пример использования Criteria API
-        // Эквивалентен JPQL запросу entityManager.createQuery("select p from Product p").getResultList();
+        // Эквивалентен JPQL запросу entityManager.createQuery("select p from Product p", Product.class).getResultList();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> query = builder.createQuery(Product.class);
         Root<Product> from = query.from(Product.class);
@@ -44,10 +44,9 @@ public class ProductRepository extends AbstractRepository<Product> implements Se
                 .getSingleResult();
     }
 
-    @SuppressWarnings("unchecked")
     public Collection<Product> getByCategory(long categoryId) {
         logger.info("Fetching Products by Category with id {}", categoryId);
-        return entityManager.createQuery("select p from Product p where p.category.id = :id")
+        return entityManager.createQuery("select p from Product p where p.category.id = :id", Product.class)
                 .setParameter("id", categoryId)
                 .getResultList();
     }

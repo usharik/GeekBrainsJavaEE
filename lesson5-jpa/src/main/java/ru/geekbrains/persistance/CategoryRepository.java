@@ -18,10 +18,9 @@ public class CategoryRepository extends AbstractRepository<Category> implements 
     private static Logger logger = LoggerFactory.getLogger(CategoryRepository.class);
 
     @Override
-    @SuppressWarnings("unchecked")
     public Collection<Category> getAll() {
         logger.info("Get all categories");
-        return entityManager.createQuery("select c from Category c").getResultList();
+        return entityManager.createQuery("select c from Category c", Category.class).getResultList();
     }
 
     @Override
