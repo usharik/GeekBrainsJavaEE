@@ -12,8 +12,8 @@ module add \
 
 # 3. creating datasource section in standalone.xml config
 data-source add \
-    --jndi-name=java:/jboss/MySQLDS \
-    --name=MySQLPool \
+    --jndi-name=java:/jboss/datasources/MySQLDS \
+    --name=MySQLDS \
     --connection-url=jdbc:mysql://localhost:3306/javaee_shop \
     --driver-name=mysql \
     --user-name=root \

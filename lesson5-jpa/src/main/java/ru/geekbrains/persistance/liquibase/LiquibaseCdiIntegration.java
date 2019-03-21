@@ -11,17 +11,24 @@ import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+/**
+ * Liquibase integration bean
+ * Responsible for applying new change sets from change log
+ * on every application deployment
+ */
 @Dependent
 public class LiquibaseCdiIntegration {
 
-    @Resource(lookup = "java:/jboss/MySQLDS")
+    private static final String CHANGE_LOG_FILE = "liquibase-diff-changeLog.xml";
+
+    @Resource(lookup = "java:/jboss/datasources/MySQLDS")
     private DataSource myDataSource;
 
     @Produces
     @LiquibaseType
     public CDILiquibaseConfig createConfig() {
         CDILiquibaseConfig config = new CDILiquibaseConfig();
-        config.setChangeLog("liquibase-diff-changeLog.xml");
+        config.setChangeLog(CHANGE_LOG_FILE);
         return config;
     }
 
