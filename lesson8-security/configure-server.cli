@@ -21,7 +21,7 @@ permission-mapper=default-permission-mapper)
 /subsystem=elytron/http-authentication-factory=servlet-security-quickstart-http-auth:add(\
 http-server-mechanism-factory=global,\
 security-domain=servlet-security-quickstart-sd,\
-mechanism-configurations=[{mechanism-name=BASIC,mechanism-realm-configurations=[{realm-name=RealmUsersRoles}]}])
+mechanism-configurations=[{mechanism-name=FORM,mechanism-realm-configurations=[{realm-name=RealmUsersRoles}]}])
 
 # 5. Configure Undertow's application security domain
 /subsystem=undertow/application-security-domain=servlet-security-quickstart:add(\

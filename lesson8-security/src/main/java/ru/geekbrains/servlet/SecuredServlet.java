@@ -1,4 +1,4 @@
-package org.jboss.as.quickstarts.servlet_security;
+package ru.geekbrains.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,13 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * A simple secured Servlet. Upon successful authentication and authorization the Servlet will print details of the user and
- * authentication. Servlet security is implemented using annotations.
- *
- * @author Sherif Makary
- *
- */
+
 @SuppressWarnings("serial")
 @WebServlet("/SecuredServlet")
 @ServletSecurity(@HttpConstraint(rolesAllowed = { "guest" }))
@@ -56,5 +50,4 @@ public class SecuredServlet extends HttpServlet {
         writer.println(PAGE_FOOTER);
         writer.close();
     }
-
 }
