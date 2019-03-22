@@ -23,11 +23,13 @@ public class PageModel implements Serializable {
     }
 
     public void action() {
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
             service.action();
         } catch (Exception ex) {
-            FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error",  ex.getLocalizedMessage()));
+            return;
         }
+        context.addMessage(null, new FacesMessage("Success",  "Service action call successful"));
     }
 }
