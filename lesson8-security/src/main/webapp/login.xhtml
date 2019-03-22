@@ -6,19 +6,21 @@
 
 <h:head>
     <title>Login page</title>
+
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
 </h:head>
 
 <h:body>
-    <form action="j_security_check" id="">
-        <h:panelGrid id="panel" columns="2" border="1" cellpadding="4" cellspacing="4">
-            <h:outputLabel for="j_username" value="Username:"/>
-            <input type="text" name="j_username"/>
-            <h:outputLabel for="j_password" value="Password:"/>
-            <input type="password" name="j_password"/>
-            <h:panelGroup>
-                <input type="submit" formmethod="post" value="Login"/>
-            </h:panelGroup>
-        </h:panelGrid>
+    <ui:include src="WEB-INF/view/menu.xhtml"/>
+
+    <form action="j_security_check">
+        <p:panelGrid id="panel" columns="2" border="1" cellpadding="4" cellspacing="4">
+            <p:outputLabel for="j_username" value="Username:"/>
+            <p:inputText type="text" name="j_username" id="j_username"/>
+            <p:outputLabel for="j_password" value="Password:"/>
+            <p:inputText type="password" name="j_password" id="j_password"/>
+            <input type="submit" formmethod="post" value="Login"/>
+        </p:panelGrid>
     </form>
 </h:body>
 </html>

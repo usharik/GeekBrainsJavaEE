@@ -34,6 +34,11 @@
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-api:2.2.18" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-impl:2.2.18" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:7.0.RC3" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces.themes:all-themes:1.0.10" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces.extensions:primefaces-extensions:7.0.RC1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8.1" level="project" />
     <orderEntry type="module" module-name="lesson5-jpa" />
     <orderEntry type="library" name="Maven: org.liquibase:liquibase-core:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.17" level="project" />
