@@ -3,10 +3,10 @@ batch
 
 
 # 1. Add the JDBC security realm creation
-#/subsystem=elytron/jdbc-realm=servlet-security-jdbc-realm:add(\
-#principal-query=[\
-#{sql="SELECT PASSWORD FROM USERS WHERE USERNAME = ?", data-source="MySQLDS", clear-password-mapper={password-index=1}},\
-#{sql="SELECT R.NAME, 'Roles' FROM USERS_ROLES UR INNER JOIN ROLES R ON R.ID = UR.ROLE_ID INNER JOIN USERS U ON U.ID = UR.USER_ID WHERE U.USERNAME = ?", data-source="MySQLDS", attribute-mapping=[{index=1, to=roles}]}])
+/subsystem=elytron/jdbc-realm=servlet-security-jdbc-realm:add(\
+principal-query=[\
+{sql="SELECT PASSWORD FROM USERS WHERE USERNAME = ?", data-source="MySQLDS", clear-password-mapper={password-index=1}},\
+{sql="SELECT R.NAME, 'Roles' FROM USERS_ROLES UR INNER JOIN ROLES R ON R.ID = UR.ROLE_ID INNER JOIN USERS U ON U.ID = UR.USER_ID WHERE U.USERNAME = ?", data-source="MySQLDS", attribute-mapping=[{index=1, to=roles}]}])
 
 # 2. Add a simple role decoder for the "roles" attribute mapping
 /subsystem=elytron/simple-role-decoder=from-roles-attribute:add(attribute=roles)
@@ -21,7 +21,7 @@ permission-mapper=default-permission-mapper)
 /subsystem=elytron/http-authentication-factory=servlet-security-quickstart-http-auth:add(\
 http-server-mechanism-factory=global,\
 security-domain=servlet-security-quickstart-sd,\
-#mechanism-configurations=[{mechanism-name=BASIC,mechanism-realm-configurations=[{realm-name=RealmUsersRoles}]}])
+mechanism-configurations=[{mechanism-name=BASIC,mechanism-realm-configurations=[{realm-name=RealmUsersRoles}]}])
 
 # 5. Configure Undertow's application security domain
 /subsystem=undertow/application-security-domain=servlet-security-quickstart:add(\
