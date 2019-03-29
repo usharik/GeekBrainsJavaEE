@@ -8,3 +8,9 @@ Some useful links
 * Wildfly JavaEE examples on Github https://github.com/wildfly/quickstart
 * Lot of Wildfly tutorials http://www.mastertheboss.com/
 * Wildfly documentation https://docs.wildfly.org/
+
+For microsevices with JavaEE
+* Like a Spring Boot with JavaEE and Wildfly modules https://thorntail.io/
+* https://github.com/thorntail/thorntail
+* http://www.mastertheboss.com/jboss-server/wildfly-swarm/introduction-to-thorntail
+* https://access.redhat.com/documentation/en-us/red_hat_openshift_application_runtimes/1/html/thorntail_runtime_guide/what-is-thorntail_wf-swarm
