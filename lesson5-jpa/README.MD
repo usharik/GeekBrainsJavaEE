@@ -8,7 +8,7 @@ To setup database driver and datasource on Wildfly server you can use script [da
 * create on MySQL database with name _javaee_shop_ 
 
 There are two ways how to run this script:
-* With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --connect --file datasource.cli`
+* With Wildfly CLI runner. Command is `# JBOSS_HOME/bin/jboss-cli.sh --connect --file=datasource.cli`
 * With maven Wildfly plugin. _JBOSS_HOME_ environment variable should be defined here or _<jboss_home>_ parameter should be defined in pom file.
 Command is `# mvn wildfly:execute-commands`
 
