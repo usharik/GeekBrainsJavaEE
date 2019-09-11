@@ -1,0 +1,108 @@
+@startuml
+
+title Classes - Class Diagram
+
+package ServletClasses <<Rectangle>> {
+
+interface Servlet {
+  +void init(ServletConfig config)
+  +ServletConfig getServletConfig()
+  +void service(ServletRequest req, ServletResponse res)
+  +String getServletInfo()
+  +void destroy()
+}
+
+Servlet <|-- GenericServlet
+
+abstract class GenericServlet {
+  -ServletConfig config
+  
+  +ServletContext getServletContext()
+  +{abstract} void service(ServletRequest req, ServletResponse res)
+}
+
+GenericServlet <|-- HttpServlet
+
+abstract class HttpServlet {
+  #void doGet(HttpServletRequest req, HttpServletResponse resp)
+  #void doPost(HttpServletRequest req, HttpServletResponse resp)
+  #void doHead(HttpServletRequest req, HttpServletResponse resp)
+  #void doPut(HttpServletRequest req, HttpServletResponse resp)
+  #void doDelete(HttpServletRequest req, HttpServletResponse resp)
+  #void doOptions(HttpServletRequest req, HttpServletResponse resp)
+  #void doTrace(HttpServletRequest req, HttpServletResponse resp)
+}
+}
+
+Servlet <.. ServletRequest : use
+Servlet <.. ServletResponse : use
+Servlet <.. ServletConfig : use
+ServletConfig <.. ServletContext : use
+ServletContext <.. RequestDispatcher : use
+
+HttpServlet <.. HttpServletRequest : use
+HttpServlet <.. HttpServletResponse : use
+
+interface ServletRequest {
+  +Object getAttribute(String name)
+  +void setAttribute(String name, Object o)
+  +void removeAttribute(String name)
+  
+  +ServletInputStream getInputStream()
+  +BufferedReader getReader()
+}
+
+interface ServletResponse {
+  +Object getAttribute(String name)
+  +void setAttribute(String name, Object o)
+  +void removeAttribute(String name)
+  
+  +ServletOutputStream getOutputStream()
+  +BufferedWriter getWriter()
+}
+
+ServletRequest <|-- HttpServletResponse
+ServletResponse <|-- HttpServletRequest
+
+interface HttpServletRequest {
+  +Cookie[] getCookies()
+  +String getHeader(String name)
+  +String getMethod()
+  +HttpSession getSession()
+  
+  +String getContextPath()
+  +String getPathInfo()
+  +String getQueryString()
+}
+
+interface HttpServletResponse {
+  +void addCookie(Cookie cookie)
+  +String addHeader(String name, String value)
+  
+  +void sendRedirect(String location)
+  +void setStatus(int httpStatus)
+}
+
+interface ServletConfig {
+    +String getServletName()
+    +ServletContext getServletContext()
+    +String getInitParameter(String name)
+    +Enumeration<String> getInitParameterNames()
+}
+
+interface ServletContext {
+  +String getContextPath()
+  +RequestDispatcher getRequestDispatcher(String path)
+  +String getInitParameter(String name)
+  +Object getAttribute(String name)
+  +void setAttribute(String name, Object o)
+  +void removeAttribute(String name)
+}
+
+interface RequestDispatcher {
+  +void forward(ServletRequest request, ServletResponse response)
+  +void include(ServletRequest request, ServletResponse response)
+}
+
+
+@enduml
