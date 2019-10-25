@@ -27,6 +27,8 @@ Also worth to mention that by default Wildfly have configured testing datasource
 ## JPA configuration in application
 To use database connection from server in application you need to create file [persistence.xml](./src/main/resources/META-INF/persistence.xml). In app sources this file have to be placed in folder resources/META-INF. You can find name of created datasource in this file.
 
+Good article about JPA and Transaction management configuration https://dzone.com/articles/resource-local-vs-jta-transaction-types-and-payara
+
 ## Liquibase usage
 This module use Liquibase to maintain changes of database structure. Code first approach is used here. 
 To uptake changes into [liquibase change log](src/main/resources/liquibase-diff-changeLog.xml) you should run 
