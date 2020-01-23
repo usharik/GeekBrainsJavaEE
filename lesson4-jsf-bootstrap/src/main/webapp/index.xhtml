@@ -26,42 +26,7 @@
 
     <ui:include src="WEB-INF/header.xhtml"/>
 
-    <h:form id="productForm" class="col-12">
-
-        <h:dataTable id="productTable" value="#{products.productList}" var="product" class="table table-striped">
-
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{product.id}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{product.name}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Price</f:facet>
-                #{product.price}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <h:commandButton value="Edit" action="#{products.editAction(product)}"
-                                 class="btn btn-success btn_margin"/>
-                <h:commandButton value="Delete" action="#{products.deleteAction(product)}"
-                                 class="btn btn-danger btn_margin">
-                    <f:ajax render="productForm"/>
-                </h:commandButton>
-            </h:column>
-
-        </h:dataTable>
-
-        <div class="form-group">
-            <h:commandButton value="New" action="#{products.addAction}" class="btn btn-success"/>
-        </div>
-
-    </h:form>
+    <h1>Super-Puper-Market</h1>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

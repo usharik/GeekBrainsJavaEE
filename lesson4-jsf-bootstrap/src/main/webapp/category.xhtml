@@ -1,0 +1,49 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Create New Category</title>
+    <style type="text/css">
+        .btnWidth {
+            width: 80px;
+        }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+</h:head>
+<h:body>
+    <h:form id="createStudentForm" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <h2>Create New Category</h2>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group">
+            <h:outputLabel for="name-id" class="control-label col-sm-4">Category Name:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="name-id" value="#{categories.name}" class="form-control"
+                             validatorMessage="Category name is required">
+                    <f:validateRequired/>
+                </h:inputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">
+                <h:commandButton value="Save" action="#{categories.saveCategory}" class="btn btn-success btnWidth"/>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>

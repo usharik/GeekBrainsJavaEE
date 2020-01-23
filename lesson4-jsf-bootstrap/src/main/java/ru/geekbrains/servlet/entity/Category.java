@@ -1,26 +1,19 @@
 package ru.geekbrains.servlet.entity;
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
-public class Product {
+public class Category {
 
     private String id;
 
     @NotNull
     private String name;
 
-    @Digits(integer = Integer.MAX_VALUE, fraction = 2)
-    private int price;
+    public Category() {}
 
-    public Product() {
-
-    }
-
-    public Product(String id, String name, int price) {
+    public Category(String id, String name) {
         this.id = id;
         this.name = name;
-        this.price = price;
     }
 
     public String getId() {
@@ -37,13 +30,5 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }
